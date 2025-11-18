@@ -25,4 +25,3 @@ lista: list[float] = []
 recoger_numeros(lista)
 media = calcular_media(lista)
 print('La media es', media)
-
