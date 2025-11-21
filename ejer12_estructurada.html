@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module ejer12_estructurada</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">ejer12_estructurada</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/home/ricardo/pro2526/ejer12_estructurada.py">/home/ricardo/pro2526/ejer12_estructurada.py</a></td></tr></table>
+    <p><span class="code">12.&nbsp;Escribir&nbsp;un&nbsp;programa&nbsp;que&nbsp;gestione&nbsp;datos&nbsp;almacenados&nbsp;en&nbsp;una&nbsp;lista,&nbsp;de&nbsp;forma&nbsp;que<br>
+muestre&nbsp;un&nbsp;menú&nbsp;con&nbsp;las&nbsp;siguientes&nbsp;opciones:<br>
+&nbsp;<br>
+1.&nbsp;Añadir&nbsp;un&nbsp;elemento&nbsp;a&nbsp;la&nbsp;lista.<br>
+2.&nbsp;Cambiar&nbsp;el&nbsp;valor&nbsp;de&nbsp;un&nbsp;elemento&nbsp;de&nbsp;la&nbsp;lista.<br>
+3.&nbsp;Eliminar&nbsp;un&nbsp;elemento&nbsp;de&nbsp;la&nbsp;lista.<br>
+4.&nbsp;Eliminar&nbsp;todos&nbsp;los&nbsp;elementos&nbsp;de&nbsp;la&nbsp;lista.<br>
+5.&nbsp;Mostrar&nbsp;los&nbsp;elementos&nbsp;de&nbsp;la&nbsp;lista.<br>
+0.&nbsp;Salir&nbsp;del&nbsp;programa.<br>
+&nbsp;<br>
+El&nbsp;programa&nbsp;deberá&nbsp;pedir&nbsp;la&nbsp;información&nbsp;necesaria&nbsp;para&nbsp;cada&nbsp;opción&nbsp;elegida&nbsp;por&nbsp;el<br>
+usuario.</span></p>
+<p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-anyadir"><strong>anyadir</strong></a>(lst: list[str]) -&gt; None</dt><dd><span class="code">Añade&nbsp;un&nbsp;elemento&nbsp;a&nbsp;la&nbsp;lista.<br>
+&nbsp;<br>
+El&nbsp;elemento&nbsp;a&nbsp;añadir&nbsp;se&nbsp;pide&nbsp;al&nbsp;usuario,&nbsp;y&nbsp;será&nbsp;una&nbsp;cadena.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;lst&nbsp;(list[str]):&nbsp;La&nbsp;lista&nbsp;en&nbsp;la&nbsp;que&nbsp;se&nbsp;va&nbsp;a&nbsp;añadir&nbsp;el&nbsp;elemento.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None</span></dd></dl>
+ <dl><dt><a name="-cambiar"><strong>cambiar</strong></a>(lst: list[str]) -&gt; None</dt><dd><span class="code">Cambia&nbsp;un&nbsp;elemento&nbsp;de&nbsp;la&nbsp;lista&nbsp;a&nbsp;un&nbsp;valor&nbsp;nuevo.<br>
+&nbsp;<br>
+Tanto&nbsp;la&nbsp;posición&nbsp;del&nbsp;elemento&nbsp;a&nbsp;cambiar&nbsp;como&nbsp;el&nbsp;nuevo&nbsp;valor&nbsp;serán<br>
+introducidos&nbsp;por&nbsp;el&nbsp;usuario.<br>
+&nbsp;<br>
+Si&nbsp;la&nbsp;lista&nbsp;está&nbsp;vacía,&nbsp;lo&nbsp;advierte&nbsp;al&nbsp;usuario.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;lst&nbsp;(list[str]):&nbsp;La&nbsp;lista&nbsp;en&nbsp;la&nbsp;que&nbsp;se&nbsp;va&nbsp;a&nbsp;cambiar&nbsp;un&nbsp;elemento.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None</span></dd></dl>
+ <dl><dt><a name="-eliminar"><strong>eliminar</strong></a>(lst: list) -&gt; None</dt><dd><span class="code">Elimina&nbsp;un&nbsp;elemento&nbsp;de&nbsp;una&nbsp;lista.<br>
+&nbsp;<br>
+La&nbsp;posición&nbsp;del&nbsp;elemento&nbsp;a&nbsp;eliminar&nbsp;será&nbsp;introducido&nbsp;por&nbsp;el&nbsp;usuario.<br>
+&nbsp;<br>
+Si&nbsp;la&nbsp;lista&nbsp;está&nbsp;vacía,&nbsp;lo&nbsp;advierte&nbsp;al&nbsp;usuario.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;lst&nbsp;(list):&nbsp;La&nbsp;lista&nbsp;en&nbsp;la&nbsp;cual&nbsp;se&nbsp;quiere&nbsp;eliminar&nbsp;un&nbsp;elemento.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None</span></dd></dl>
+ <dl><dt><a name="-eliminar_todos"><strong>eliminar_todos</strong></a>(lst: list) -&gt; None</dt><dd><span class="code">Elimina&nbsp;todos&nbsp;los&nbsp;elementos&nbsp;de&nbsp;una&nbsp;lista.</span></dd></dl>
+ <dl><dt><a name="-es_vacia"><strong>es_vacia</strong></a>(lst: list) -&gt; bool</dt><dd><span class="code">Comprueba&nbsp;si&nbsp;una&nbsp;lista&nbsp;está&nbsp;vacía.<br>
+&nbsp;<br>
+Si&nbsp;está&nbsp;vacía,&nbsp;lo&nbsp;advierte&nbsp;al&nbsp;usuario&nbsp;por&nbsp;la&nbsp;salida.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;lst&nbsp;(list):&nbsp;La&nbsp;lista.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;si&nbsp;está&nbsp;vacía,&nbsp;y&nbsp;False&nbsp;si&nbsp;no&nbsp;lo&nbsp;está.</span></dd></dl>
+ <dl><dt><a name="-imprimir_menu"><strong>imprimir_menu</strong></a>(opciones: str) -&gt; None</dt><dd><span class="code">Muestra&nbsp;un&nbsp;menú&nbsp;de&nbsp;opciones.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;opciones&nbsp;(str):&nbsp;Las&nbsp;opciones&nbsp;del&nbsp;menú&nbsp;(una&nbsp;cadena&nbsp;multilínea,&nbsp;una&nbsp;opción<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;por&nbsp;línea).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None</span></dd></dl>
+ <dl><dt><a name="-mostrar"><strong>mostrar</strong></a>(lst: list) -&gt; None</dt><dd><span class="code">Muestra&nbsp;una&nbsp;lista&nbsp;por&nbsp;la&nbsp;salida.</span></dd></dl>
+ <dl><dt><a name="-pedir_entero"><strong>pedir_entero</strong></a>(mensaje: str) -&gt; int</dt><dd><span class="code">Pide&nbsp;un&nbsp;número&nbsp;entero&nbsp;al&nbsp;usuario&nbsp;y&nbsp;lo&nbsp;devuelve.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;mensaje&nbsp;(str):&nbsp;El&nbsp;mensaje&nbsp;que&nbsp;se&nbsp;muestra&nbsp;al&nbsp;usuario.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;El&nbsp;entero&nbsp;que&nbsp;el&nbsp;usuario&nbsp;ha&nbsp;introducido.</span></dd></dl>
+ <dl><dt><a name="-pedir_opcion"><strong>pedir_opcion</strong></a>() -&gt; int</dt><dd><span class="code">Pide&nbsp;una&nbsp;opción&nbsp;del&nbsp;menú&nbsp;al&nbsp;usuario&nbsp;y&nbsp;la&nbsp;devuelve.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;El&nbsp;entero&nbsp;que&nbsp;representa&nbsp;la&nbsp;opción&nbsp;elegida.</span></dd></dl>
+ <dl><dt><a name="-pedir_posicion"><strong>pedir_posicion</strong></a>(lst: list) -&gt; int</dt><dd><span class="code">Pide&nbsp;al&nbsp;usuario&nbsp;un&nbsp;índice&nbsp;válido&nbsp;de&nbsp;la&nbsp;lista&nbsp;de&nbsp;entrada&nbsp;y&nbsp;lo&nbsp;devuelve.<br>
+&nbsp;<br>
+El&nbsp;índice&nbsp;devuelto&nbsp;debe&nbsp;cumplir&nbsp;que:&nbsp;0&nbsp;&lt;=&nbsp;índice&nbsp;&lt;&nbsp;len(lst)<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;lst&nbsp;(list[str]):&nbsp;La&nbsp;lista&nbsp;de&nbsp;la&nbsp;que&nbsp;se&nbsp;va&nbsp;a&nbsp;extraer&nbsp;la&nbsp;posición.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;El&nbsp;entero&nbsp;que&nbsp;representa&nbsp;el&nbsp;índice&nbsp;introducido&nbsp;por&nbsp;el&nbsp;usuario.</span></dd></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>OPCIONES</strong> = '<span class="repr">\n</span>1. Añadir un elemento a la lista.<span class="repr">\n</span>2. Cambiar el...os elementos de la lista.<span class="repr">\n</span>0. Salir del programa.<span class="repr">\n</span>'<br>
+<strong>__annotations__</strong> = {'OPCIONES': &lt;class 'str'&gt;, 'lista': list[str], 'opc': &lt;class 'int'&gt;}<br>
+<strong>lista</strong> = []<br>
+<strong>opc</strong> = 0</td></tr></table>
+</body></html>
