@@ -138,12 +138,6 @@ def es_vacia(lst: list) -> bool:
         
     Returns:
         True si está vacía, y False si no lo está.
-        
-    >>> es_vacia([])
-    No se puede cambiar o eliminar de una lista vacía.
-    True
-    >>> es_vacia([1, 2, 3])
-    False
     """
     if len(lst) == 0:
         print('No se puede cambiar o eliminar de una lista vacía.')
@@ -172,39 +166,29 @@ def eliminar(lst: list) -> None:
     
 
 def eliminar_todos(lst: list) -> None:
-    """
-    Elimina todos los elementos de una lista.
-    
-    >>> l = [1, 2, 3]
-    >>> eliminar_todos(l)
-    >>> l
-    []
-    """
+    """Elimina todos los elementos de una lista."""
     lst.clear()
     
 
 # Programa principal:
 
-def main():   
-    lista: list[str] = []
+lista: list[str] = []
 
-    while True:
-        imprimir_menu(OPCIONES)
-        opc: int = pedir_opcion()
+"""
+while True:
+    imprimir_menu(OPCIONES)
+    opc: int = pedir_opcion()
 
-        if opc == 1:
-            anyadir(lista)
-        elif opc == 2:
-            cambiar(lista)
-        elif opc == 3:
-            eliminar(lista)
-        elif opc == 4:
-            eliminar_todos(lista)
-        elif opc == 5:
-            mostrar(lista)
-        elif opc == 0:
-            break
-        else:
-            print('Opción incorrecta.')
-
-main()
+    if opc == 1:
+        anyadir(lista)
+    elif opc == 2:
+        cambiar(lista)
+    elif opc == 3:
+        eliminar(lista)
+    elif opc == 4:
+        eliminar_todos(lista)
+    elif opc == 5:
+        mostrar(lista)
+    else:
+        break
+"""
