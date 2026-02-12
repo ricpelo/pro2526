@@ -35,10 +35,19 @@ def _fib_aux(n: int) -> int:
 
 
 if __name__ == '__main__':
-    _correcto = lambda n, v: '(correcto)' if n == v else '(incorrecto)'
-    f7 = fib(7)
-    f8 = fib(8)
-    fit8 = fib_iter(8)
-    print('fib(7) vale', f7, _correcto(f7, 13))
-    print('fib(8) vale', f8, _correcto(f8, 21))
-    print('fib_iter(8) vale', fit8, _correcto(fit8, 21))
+    import sys
+    if len(sys.argv) > 1:
+        try:
+            numero = int(sys.argv[1])
+            print(fib(numero))
+        except ValueError:
+            print('Argumento incorrecto en la línea de órdenes')
+            sys.exit(1)
+    else:
+        correcto = lambda n, v: '(correcto)' if n == v else '(incorrecto)'
+        f7 = fib(7)
+        f8 = fib(8)
+        fit8 = fib_iter(8)
+        print('fib(7) vale', f7, correcto(f7, 13))
+        print('fib(8) vale', f8, correcto(f8, 21))
+        print('fib_iter(8) vale', fit8, correcto(fit8, 21))
