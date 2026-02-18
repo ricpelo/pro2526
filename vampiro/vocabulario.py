@@ -14,7 +14,9 @@ NORTE = 3
 CUCHILLO = 4
 CERRAR = 5
 
-vocabulario: dict[str, tuple[int, int]] = {
+Palabra = tuple[int, int]
+
+vocabulario: dict[str, Palabra] = {
     'COGER': (T_VERBO, COGER),
     'TOMAR': (T_VERBO, COGER),
     'ABRIR': (T_VERBO, ABRIR),
@@ -23,21 +25,22 @@ vocabulario: dict[str, tuple[int, int]] = {
     'CUCHILLO': (T_NOMBRE, CUCHILLO)
 }
 
-verbo = None
-nombre = None
+def buscar_palabra(lexema: str) -> Palabra|None:
+    """
+    Comprueba si en el vocabulario hay una palabra
+    con ese lexema, y la devuelve en ese caso.
+    En caso contrario, que devuelva None.
+    """
+    if lexema in vocabulario:
+        return vocabulario[lexema]
+    return None
 
-def buscar_palabra(palabra: str) -> None:
-    """
-    Comprueba si una palabra existe en el vocabulario y hace que
-    el módulo la recuerde como verbo o como nombre.
-    """
-    global verbo, nombre
-    if palabra in vocabulario:
-        tipo, token = vocabulario[palabra]
-        if tipo == T_VERBO:
-            verbo = token
-        elif tipo == T_NOMBRE:
-            nombre = token
-        else:
-            # Error
-            pass
+
+def es_verbo(p: Palabra) -> bool:
+    """Devuelve True si p es un verbo."""
+    return p[0] == T_VERBO
+
+
+def es_nombre(p: Palabra) -> bool:
+    """Devuelve True si p es un nombre."""
+    return p[0] == T_NOMBRE

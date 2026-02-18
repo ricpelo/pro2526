@@ -3,11 +3,11 @@ Módulo de entrada.
 
 - Variables:
 
-  - entrada (str): contiene la entrada del jugador.
+  - entrada (list[str]): contiene la entrada del jugador.
 """
 
 
-entrada: str = ''
+entrada: list[str] = []
 
 
 def pedir_entrada() -> None:
@@ -16,8 +16,30 @@ def pedir_entrada() -> None:
     entrada del módulo.
     """
     global entrada
-    lista: list[str] = input('> ').strip().upper().split()
-    entrada = ' '.join(lista)
+    entrada = input('> ').strip().upper().split()
+
+
+def longitud() -> int:
+    """
+    Devuelve cuántos lexemas tiene la entrada.
+    """
+    return len(entrada)
+
+
+def primer_lexema() -> str:
+    """Devuelve el primer lexema."""
+    try:
+        return entrada[0]
+    except IndexError:
+        return ''
+
+
+def segundo_lexema() -> str:
+    """Devuelve el primer lexema."""
+    try:
+        return entrada[1]
+    except IndexError:
+        return ''
 
 
 if __name__ == '__main__':
