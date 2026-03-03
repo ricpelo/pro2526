@@ -10,6 +10,11 @@ class Pila:
     def __init__(self):
         self.lista = []
         
+    def __eq__(self, otro):
+        if type(self) != type(otro):
+            return NotImplemented
+        return self.lista == otro.lista        
+    
     def comprobar_vacia(self) -> None:
         if self.es_vacia():
             raise ValueError('La pila está vacía.')
