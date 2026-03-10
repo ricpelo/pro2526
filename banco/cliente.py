@@ -1,10 +1,14 @@
+"""
+Modelo de clientes de un banco.
+"""
 
-
-class Persona:
+class Cliente:
     """
+    Un cliente del banco.
+    
     Inv: self.nombre != '' and self.apellidos != '' and self.dni != ''
     """
-        
+    
     def __init__(self, dni, nombre, apellidos):
         self.__set_dni(dni)
         self.nombre = nombre
@@ -23,7 +27,7 @@ class Persona:
         dni = self.dni
         nom = self.nombre
         ape = self.apellidos
-        return f'Persona({dni!r}, {nom!r}, {ape!r})'
+        return f'Cliente({dni!r}, {nom!r}, {ape!r})'
 
     def __str__(self):
         dni = self.dni
@@ -53,7 +57,7 @@ class Persona:
         self.__comprobar_vacio(nombre)
         self.__nombre = nombre
         assert self.nombre == nombre
-        self.__invariante()
+        self.__invariante()    
 
     def get_nombre_completo(self):
         return f'{self.nombre} {self.apellidos}'
@@ -78,3 +82,4 @@ class Persona:
         self.__apellidos = apellidos
         assert self.apellidos == apellidos
         self.__invariante()
+    
