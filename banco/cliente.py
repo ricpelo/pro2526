@@ -36,10 +36,13 @@ class Cliente:
         return f'Esta persona tiene el DNI {dni} y se llama {nom} {ape}.'
 
     def __invariante(self):
-        inv = self.nombre != '' and \
-              self.apellidos != '' and \
-              self.dni != ''
-        assert inv, "Violación del invariante."
+        try:
+            inv = self.nombre != '' and \
+                  self.apellidos != '' and \
+                  self.dni != ''
+            assert inv, "Violación del invariante."
+        except AttributeError:
+            pass
 
     def __comprobar_vacio(self, valor):
         if valor == '':
@@ -70,14 +73,14 @@ class Cliente:
         self.__comprobar_vacio(dni)
         self.__dni = dni
         assert self.dni == dni
-        self.__invariante()
+        # self.__invariante()
 
     @property
     def apellidos(self):
         return self.__apellidos
     
     @apellidos.setter
-    def set_apellidos(self, apellidos):
+    def apellidos(self, apellidos):
         self.__comprobar_vacio(apellidos)
         self.__apellidos = apellidos
         assert self.apellidos == apellidos

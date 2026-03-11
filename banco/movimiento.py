@@ -14,6 +14,21 @@ class Movimiento:
         self.__set_concepto(concepto)
         self.__cantidad = cantidad
         
+    def __eq__(self, otro) -> bool:
+        if type(self) != type(otro):
+            return NotImplemented
+        return self.cantidad == otro.cantidad and \
+               self.concepto == otro.concepto
+
+    def __hash__(self):
+        return hash((self.cantidad, self.concepto))
+    
+    def __repr__(self) -> str:
+        return f'Movimiento({self.concepto!r}, {self.cantidad!r})'
+
+    def __str__(self) -> str:
+        return f'Movimiento de tipo {self.concepto} por importe de {self.cantidad:.2f} €.'
+
     @property
     def concepto(self) -> str:
         return self.__concepto
