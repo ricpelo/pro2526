@@ -16,11 +16,20 @@ class Cuenta:
           todos sus movimientos.
     """
     
-    def __init__(self, numero: int, titular: Cliente) -> None:
-        self.__set_numero(numero)
+    ultimo: int = 0
+    cuentas: dict[int, 'Cuenta'] = {}
+    
+    @staticmethod
+    def buscar_cuenta(numero: int) -> 'Cuenta':
+        return Cuenta.cuentas[numero]
+    
+    def __init__(self, titular: Cliente) -> None:
+        Cuenta.ultimo += 1
+        self.__set_numero(Cuenta.ultimo)
         self.titular = titular
         self.__movimientos: list[Movimiento] = []
         self.__saldo: float = 0.00
+        Cuenta.cuentas[self.numero] = self
 
     def __iter__(self):
         return iter(self.__movimientos)
@@ -66,8 +75,9 @@ class Cuenta:
     def saldo(self) -> float:
         return self.__saldo
     
-    def agregar_movimiento(self, concepto: str, cantidad: float) -> None:
+    def agregar_movimiento(self, concepto: str, cantidad: float) -> 'Cuenta':
         self.__movimientos.append(Movimiento(concepto, cantidad))
         self.__saldo += cantidad
         self.__invariante()
+        return self
         
