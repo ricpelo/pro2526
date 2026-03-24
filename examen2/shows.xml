@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<raiz>
+    <pelicula id="237">
+        <titulo>Star Wars</titulo>
+        <genero>Ciencia ficción</genero>
+        <director>George Lucas</director>
+    </pelicula>
+    <pelicula id="488">
+        <titulo>Cristal oscuro</titulo>
+        <genero>Fantasía</genero>
+        <director>Jim Henson</director>
+    </pelicula>
+    <serie id="992">
+        <titulo>Juego de tronos</titulo>
+        <genero>Fantasía</genero>
+        <temporada num="1">
+            <episodio num="1">
+                <titulo>Winter is Coming</titulo>
+                <director>Tim Van Patten</director>
+            </episodio>
+        </temporada>
+    </serie>
+</raiz>
