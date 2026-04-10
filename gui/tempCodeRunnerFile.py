@@ -1,0 +1,1 @@
+ self.option_add("*Font", ("Arial", 24))
