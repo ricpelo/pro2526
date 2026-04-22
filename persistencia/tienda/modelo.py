@@ -2,9 +2,9 @@
 Tienda online.
 """
 
-import ZODB
 from persistent import Persistent
 from BTrees.OOBTree import BTree # type: ignore
+from typing import Iterator
 
 
 class Articulo(Persistent):
@@ -45,6 +45,9 @@ class Articulo(Persistent):
             raise ValueError('El precio no puede ser negativo.')
         self.__precio = precio
 
+    def __str__(self) -> str:
+        return f'{self.codigo} {self.denominacion:15} {self.precio:5.2f} €'
+
 
 class Usuario(Persistent):
     """Un usuario de la tienda online."""
@@ -74,6 +77,40 @@ class Usuario(Persistent):
     def carrito(self, carrito: 'Carrito|None') -> None:
         self.__carrito = carrito
 
+    def __str__(self) -> str:
+        return f'Usuario {self.nombre} con DNI {self.dni}'
+
+
+class Detalle(Persistent):
+    """Una línea de detalle dentro del carrito."""
+
+    def __init__(self, articulo: Articulo, cantidad: int = 1) -> None:
+        self.__articulo = articulo
+        self.__set_cantidad(cantidad)
+
+    @property
+    def articulo(self) -> Articulo:
+        return self.__articulo
+
+    @property
+    def cantidad(self) -> int:
+        return self.__cantidad
+
+    @property
+    def importe(self) -> float:
+        return self.articulo.precio * self.cantidad
+
+    def __set_cantidad(self, cantidad: int) -> None:
+        if cantidad <= 0:
+            raise ValueError('La cantidad debe ser siempre mayor que cero.')
+        self.__cantidad = cantidad
+
+    def incrementar_cantidad(self, incremento: int = 1) -> None:
+        self.__set_cantidad(self.cantidad + incremento)
+
+    def decrementar_cantidad(self, decremento: int = 1) -> None:
+        self.__set_cantidad(self.cantidad - decremento)
+
 
 class Carrito(Persistent):
     """Un carrito de la tienda online."""
@@ -81,7 +118,37 @@ class Carrito(Persistent):
     def __init__(self, usuario: Usuario) -> None:
         self.__usuario = usuario
         usuario.carrito = self
+        self.__detalles = BTree()
+
+    def __iter__(self) -> Iterator[Detalle]:
+        return iter(self.__detalles.values())
 
     @property
     def usuario(self) -> Usuario:
         return self.__usuario
+
+    @property
+    def total(self) -> float:
+        return sum(detalle.importe for detalle in self)
+
+    def agregar_articulo(self, articulo: Articulo, cantidad: int = 1) -> None:
+        """Añade un artículo al carrito, con la cantidad indicada."""
+        if articulo.codigo in self.__detalles:
+            detalle = self.__detalles[articulo.codigo]
+            detalle.incrementar_cantidad(cantidad)
+        else:
+            detalle = Detalle(articulo, cantidad)
+
+    def quitar_articulo(self, articulo: Articulo, cantidad: int = 1) -> None:
+        self.quitar_articulo_por_codigo(articulo.codigo, cantidad)
+
+    def quitar_articulo_por_codigo(self, codigo: int, cantidad: int = 1) -> None:
+        if codigo in self.__detalles:
+            detalle = self.__detalles[codigo]
+            cant_anterior = detalle.cantidad
+            if cant_anterior == cantidad:
+                del self.__detalles[codigo]
+            else:
+                detalle.decrementar_cantidad(cantidad)
+        else:
+            raise ValueError('El artículo no está en el carrito.')
