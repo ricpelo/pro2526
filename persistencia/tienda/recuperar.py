@@ -1,5 +1,5 @@
 from basedatos import BaseDatos
-from modelo import Articulo, Usuario, Carrito
+from modelo import Articulo, Usuario, Carrito, Detalle
 
 basedatos = BaseDatos()
 
@@ -10,7 +10,9 @@ for usuario in basedatos.raiz['usuarios'].values():
     else:
         print('C Denominación     Precio Cant    Importe')
         print('-----------------------------------------')
-        for articulo, cantidad in usuario.carrito:
+        for detalle in usuario.carrito:
+            articulo = detalle.articulo
+            cantidad = detalle.cantidad
             importe = articulo.precio * cantidad
             print(articulo, f'{cantidad:3}  {importe:7.2f} €', sep='  ')
         print('-----------------------------------------')

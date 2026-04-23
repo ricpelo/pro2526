@@ -15,6 +15,14 @@ class Articulo(Persistent):
         self.denominacion = denominacion
         self.precio = precio
 
+    def __eq__(self, otro) -> bool:
+        if not isinstance(otro, type(self)):
+            return NotImplemented
+        return self.codigo == otro.codigo
+
+    def __hash__(self) -> int:
+        return hash(self.codigo)
+
     @property
     def codigo(self) -> int:
         return self.__codigo
@@ -57,6 +65,14 @@ class Usuario(Persistent):
         self.nombre = nombre
         self.carrito = None
 
+    def __eq__(self, otro: object) -> bool:
+        if not isinstance(otro, type(self)):
+            return NotImplemented
+        return self.dni == otro.dni
+
+    def __hash__(self) -> int:
+        return hash(self.dni)
+
     @property
     def dni(self) -> str:
         return self.__dni
@@ -84,9 +100,22 @@ class Usuario(Persistent):
 class Detalle(Persistent):
     """Una línea de detalle dentro del carrito."""
 
-    def __init__(self, articulo: Articulo, cantidad: int = 1) -> None:
+    def __init__(self, carrito: 'Carrito', articulo: Articulo, cantidad: int = 1) -> None:
+        self.__carrito = carrito
         self.__articulo = articulo
         self.__set_cantidad(cantidad)
+
+    def __eq__(self, otro: object) -> bool:
+        if not isinstance(otro, type(self)):
+            return NotImplemented
+        return (self.carrito, self.articulo) == (otro.carrito, otro.articulo)
+
+    def __hash__(self) -> int:
+        return hash((self.carrito, self.articulo))
+
+    @property
+    def carrito(self) -> 'Carrito':
+        return self.__carrito
 
     @property
     def articulo(self) -> Articulo:
@@ -120,8 +149,19 @@ class Carrito(Persistent):
         usuario.carrito = self
         self.__detalles = BTree()
 
+    def __eq__(self, otro: object) -> bool:
+        if not isinstance(otro, type(self)):
+            return NotImplemented
+        return self.usuario == otro.usuario
+
+    def __hash__(self) -> int:
+        return hash(self.usuario)
+
     def __iter__(self) -> Iterator[Detalle]:
         return iter(self.__detalles.values())
+
+    def get_detalles(self):
+        return self.__detalles
 
     @property
     def usuario(self) -> Usuario:
@@ -137,7 +177,7 @@ class Carrito(Persistent):
             detalle = self.__detalles[articulo.codigo]
             detalle.incrementar_cantidad(cantidad)
         else:
-            detalle = Detalle(articulo, cantidad)
+            self.__detalles[articulo.codigo] = Detalle(self, articulo, cantidad)
 
     def quitar_articulo(self, articulo: Articulo, cantidad: int = 1) -> None:
         self.quitar_articulo_por_codigo(articulo.codigo, cantidad)
@@ -152,3 +192,9 @@ class Carrito(Persistent):
                 detalle.decrementar_cantidad(cantidad)
         else:
             raise ValueError('El artículo no está en el carrito.')
+
+    def buscar_articulo(self, articulo: Articulo) -> Detalle|None:
+        for detalle in self:
+            if detalle.articulo == articulo:
+                return detalle
+        return None
