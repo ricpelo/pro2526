@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<tienda>
+    <categoria nombre="informatica">
+        <producto>
+            <nombre>raton</nombre>
+            <precio>10</precio>
+        </producto>
+        <producto>
+            <nombre>teclado</nombre>
+            <precio>20</precio>
+        </producto>
+    </categoria>
+    <categoria nombre="hogar">
+        <producto>
+            <nombre>silla</nombre>
+            <precio>50</precio>
+        </producto>
+    </categoria>
+</tienda>
