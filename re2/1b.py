@@ -34,15 +34,13 @@ class Ticket:
 class Cola:
     def __init__(self) -> None:
         self.__tickets: list[Ticket] = []
-        self.__contador: int = 0
 
     def nuevo_ticket(self) -> Ticket:
         """
         Crea un nuevo ticket con número incremental consecutivo, lo añade a la
         cola y devuelve el ticket.
         """
-        self.__contador += 1
-        t = Ticket(self.__contador)
+        t = Ticket(len(self.__tickets) + 1)
         self.__tickets.append(t)
         return t
 
