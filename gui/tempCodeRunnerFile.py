@@ -1,1 +1,1 @@
- self.option_add("*Font", ("Arial", 24))
+ttk.Style().configure("TRadiobutton", font=("Arial", 24))

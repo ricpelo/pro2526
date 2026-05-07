@@ -19,8 +19,9 @@ class Aplicacion(tk.Tk):
 
         self.title("Calculadora")
         self.option_add("*Font", ("Arial", 24))
-        ttk.Style().configure("TRadiobutton", font=("Arial", 24))
+        # ttk.Style().configure("TCombobox", font=("Arial", 48))
 
+        self.grid_columnconfigure(0, weight=1) # Expande columna 1
         self.grid_columnconfigure(1, weight=1) # Expande columna 1
         self.resizable(True, False)
 
@@ -71,6 +72,7 @@ class Aplicacion(tk.Tk):
             op1 = float(self.__op1.get())
             op2 = float(self.__op2.get())
             op = self.__op.get()
+            print(op)
             match op:
                 case '+': res = op1 + op2
                 case '-': res = op1 - op2

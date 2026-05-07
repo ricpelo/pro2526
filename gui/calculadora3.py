@@ -51,6 +51,7 @@ class Aplicacion(tk.Tk):
         self.__rb_sub.grid(row=0, column=1, padx=10)
         self.__rb_mul.grid(row=0, column=2, padx=10)
         self.__rb_div.grid(row=0, column=3, padx=10)
+        self.__op.set('+')
 
         self.__res_label = tk.Label(self, text="Resultado:")
         self.__res_label.grid(row=3, column=0)
